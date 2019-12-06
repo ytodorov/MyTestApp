@@ -43,7 +43,7 @@ namespace MyTestApp
 
             app.UseAuthorization();
 
-            app.Map("/home", HandleHome);
+            app.Map("", HandleHome);
 
             app.UseEndpoints(endpoints =>
             {
@@ -55,7 +55,7 @@ namespace MyTestApp
         {
             app.Run(async context =>
             {
-                await context.Response.WriteAsync($"application is working .. {DateTime.Now.ToString()} {Environment.CurrentDirectory}");
+                await context.Response.WriteAsync($"application is working .. {DateTime.Now.ToString()} currentDirectory: {Environment.CurrentDirectory} working set: {Environment.WorkingSet}");
             });
         }
     }
