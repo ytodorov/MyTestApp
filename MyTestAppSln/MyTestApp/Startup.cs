@@ -26,6 +26,9 @@ namespace MyTestApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // The following line enables Application Insights telemetry collection.
+            services.AddApplicationInsightsTelemetry("7d7c2c2d-0e07-4e55-b84a-96b612abd04b");
+
             services.AddControllers();
         }
 
