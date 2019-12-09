@@ -27,7 +27,7 @@ namespace MyTestApp
         public void ConfigureServices(IServiceCollection services)
         {
             // The following line enables Application Insights telemetry collection.
-            services.AddApplicationInsightsTelemetry("7d7c2c2d-0e07-4e55-b84a-96b612abd04b");
+            services.AddApplicationInsightsTelemetry("d4d6c9b7-44db-4a4b-b7c6-883faf93d388");
 
             services.AddControllers();
         }
