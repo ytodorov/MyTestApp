@@ -16,6 +16,10 @@ namespace MyTestApp
 {
     public class Startup
     {
+        /// <summary>
+        /// test for push to azure
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
