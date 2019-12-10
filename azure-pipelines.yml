@@ -17,19 +17,26 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
 - task: UseDotNet@2
+  displayName: 'Use .NET Core sdk 3.1.100'
   inputs:
     packageType: 'sdk'
-    version: '3.1.*.*'
+    version: '3.1.100'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
 
-- task: VSBuild@1
+- task: CmdLine@2
+  displayName: 'Result from dotnet --info command'
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    script: 'dotnet --info'
 
+- task: DotNetCoreCLI@2
+  displayName: 'Publish WebApi.'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/MyTestAppPublishOutput'
+    zipAfterPublish: True
+    projects: '**\**MyTestApp.csproj'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifacts from $(Build.ArtifactStagingDirectory) to a drop.zip file.'
