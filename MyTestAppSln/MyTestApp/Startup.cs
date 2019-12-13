@@ -62,7 +62,7 @@ namespace MyTestApp
         {
             app.Run(async context =>
             {
-                await context.Response.WriteAsync($"application is working .. {DateTime.Now.ToString()} currentDirectory: {Environment.CurrentDirectory} working set: {Environment.WorkingSet}");
+                await context.Response.WriteAsync($"2 application is working .. {DateTime.Now.ToString()} currentDirectory: {Environment.CurrentDirectory} working set: {Environment.WorkingSet}");
             });
         }
     }
